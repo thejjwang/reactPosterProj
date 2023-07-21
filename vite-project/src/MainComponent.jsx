@@ -130,7 +130,7 @@ const MainComponent = () => {
         // console.log("current poster:" + currentPoster);
 
     // setCurrentPoster(poster);
-    // console.log(currentPoster);
+    console.log("current:" + currentPoster);
 
     const savePoster = () => {
         setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);
