@@ -1,23 +1,22 @@
 
 const ShowSaved = ({savedPosters}) => {
 
-    const savedPostersView = () => {
-
-
-        return (
-            <div className="savedPostersView">
-                <h3>Saved Posters</h3>
-                <div className="savedPostersGrid">
-                    {savedPosters.map((poster, index) => <li key={index}>{poster}</li>)}
-                </div>
-                <button>Back to Main</button>
-            </div>
-        )
-    }
 
     return (
-        <button onClick={savedPostersView}>Show Saved Posters</button>
+        <div className="savedPostersView">
+            <h3>Saved Posters</h3>
+            <div className="savedPostersGrid">
+                {savedPosters.map((poster, index) =>
+                        <div className="posterDiv" key={index}>
+                            <img className='poster-img' alt="img" src={poster.image}/>
+                            <h3 className='poster-title'>{poster.title}</h3>
+                            <p className='poster-quote'>{poster.quote}</p>
+                        </div>)}
+            </div>
+            <button>Back to Main</button>
+        </div>
     )
 }
+
 
 export default ShowSaved;

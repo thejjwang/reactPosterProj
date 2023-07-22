@@ -107,8 +107,9 @@ const quotes = [
 const MainComponent = () => {
     const [savedPosters, setSavedPosters] = useState([]);
     const [currentPoster, setCurrentPoster] = useState({});
-    // const [showSaved, setShowSaved] = useState(false);
-    // const [formComponent, setFormComponent] = useState(false);
+    const [showSaved, setShowSaved] = useState(false);
+    const [formComponent, setFormComponent] = useState(false);
+
     const randomize = () => {
         const randomImg = images[Math.floor(Math.random() * images.length)];
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -121,23 +122,27 @@ const MainComponent = () => {
         } 
 
         setCurrentPoster(poster);
-        console.log(poster);
     }
-        // console.log("current poster:" + currentPoster);
-    // setCurrentPoster(poster);
-    console.log("current:" + currentPoster);
+   
     const savePoster = () => {
-        setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);
-    };
+        setSavedPosters([...savedPosters, currentPoster]);
+        console.log(savedPosters);
+    };  
+    
     // console.log('saved' + savedPosters)
+
+    const handleToggleSave =  () => {
+        setShowSaved(true);
+    }
 
     return (
         <div>
             <Poster currentPoster={currentPoster}/>
             <button onClick={savePoster}>Save This Poster</button>
-            <ShowSaved savedPosters={savedPosters}/>
+            {showSaved && (<ShowSaved savedPosters={savedPosters} />)} 
+            <button onClick={handleToggleSave}>Show Saved Posters</button>
             <button onClick={randomize}>Show Another Random Poster</button>
-            <FormComponent />
+            {FormComponent && (<FormComponent /> )}
         </div>
     )
 }
