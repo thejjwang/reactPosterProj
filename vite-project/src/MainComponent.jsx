@@ -7,24 +7,24 @@ import { useState } from "react"
 
 // we've provided you with some data to work with 👇
 const images = [
-    "./assets/bees.jpg",
-    "./assets/bridge.jpg",
-    "./assets/butterfly.jpg",
-    "./assets/cliff.jpg",
-    "./assets/elephant.jpg",
-    "./assets/flock.jpg",
-    "./assets/fox.jpg",
-    "./assets/frog.jpg",
-    "./assets/horse.jpg",
-    "./assets/lion.jpg",
-    "./assets/mountain.jpg",
-    "./assets/pier.jpg",
-    "./assets/puffins.jpg",
-    "./assets/pug.jpg",
-    "./assets/runner.jpg",
-    "./assets/squirrel.jpg",
-    "./assets/tiger.jpg",
-    "./assets/turtle.jpg"
+    "src/assets/bees.jpg",
+    "src/assets/bridge.jpg",
+    "src/assets/butterfly.jpg",
+    "src/assets/cliff.jpg",
+    "src/assets/elephant.jpg",
+    "src/assets/flock.jpg",
+    "src/assets/fox.jpg",
+    "src/assets/frog.jpg",
+    "src/assets/horse.jpg",
+    "src/assets/lion.jpg",
+    "src/assets/mountain.jpg",
+    "src/assets/pier.jpg",
+    "src/assets/puffins.jpg",
+    "src/assets/pug.jpg",
+    "src/assets/runner.jpg",
+    "src/assets/squirrel.jpg",
+    "src/assets/tiger.jpg",
+    "src/assets/turtle.jpg"
 ];
 let titles = [
     "determination",
@@ -107,11 +107,8 @@ const quotes = [
 const MainComponent = () => {
     const [savedPosters, setSavedPosters] = useState([]);
     const [currentPoster, setCurrentPoster] = useState({});
-
     // const [showSaved, setShowSaved] = useState(false);
     // const [formComponent, setFormComponent] = useState(false);
-
-
     const randomize = () => {
         const randomImg = images[Math.floor(Math.random() * images.length)];
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -126,17 +123,13 @@ const MainComponent = () => {
         setCurrentPoster(poster);
         console.log(poster);
     }
-    
         // console.log("current poster:" + currentPoster);
-
     // setCurrentPoster(poster);
     console.log("current:" + currentPoster);
-
     const savePoster = () => {
         setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);
     };
-
-    console.log('saved' +savedPosters)
+    // console.log('saved' + savedPosters)
 
     return (
         <div>
