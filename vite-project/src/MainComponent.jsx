@@ -1,7 +1,7 @@
 import Poster from "./Poster"
 import ShowSaved from "./ShowSaved"
 import FormComponent from "./FormComponent"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
   // query selector variables go here 👇
 
@@ -106,9 +106,12 @@ const quotes = [
 
 const MainComponent = () => {
     const [savedPosters, setSavedPosters] = useState([]);
-    const [currentPoster, setCurrentPoster] = useState({});
+    const [currentPoster, setCurrentPoster] = useState({image: images[Math.floor(Math.random() * images.length)],
+        quote: quotes[Math.floor(Math.random() * quotes.length)],
+        title: titles[Math.floor(Math.random() * titles.length)]});
     const [showSaved, setShowSaved] = useState(false);
     const [formComponent, setFormComponent] = useState(false);
+
 
     const randomize = () => {
         const randomImg = images[Math.floor(Math.random() * images.length)];
@@ -123,23 +126,21 @@ const MainComponent = () => {
 
         setCurrentPoster(poster);
     }
-   
-    const savePoster = () => {
-        setSavedPosters([...savedPosters, currentPoster]);
-        console.log(savedPosters);
-    };  
     
-    // console.log('saved' + savedPosters)
+    const savePoster = () => {
+        setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);
+    }
+    console.log(savedPosters);
 
     const handleToggleSave =  () => {
-        setShowSaved(true);
+        setShowSaved(!showSaved);
     }
-
+ 
     return (
         <div>
             <Poster currentPoster={currentPoster}/>
             <button onClick={savePoster}>Save This Poster</button>
-            {showSaved && (<ShowSaved savedPosters={savedPosters} />)} 
+            {showSaved && (<ShowSaved savedPosters={savedPosters} handleToggleSave={handleToggleSave} />)} 
             <button onClick={handleToggleSave}>Show Saved Posters</button>
             <button onClick={randomize}>Show Another Random Poster</button>
             {FormComponent && (<FormComponent /> )}

@@ -1,5 +1,5 @@
 
-const ShowSaved = ({savedPosters}) => {
+const ShowSaved = ({savedPosters, handleToggleSave}) => {
 
 
     return (
@@ -13,7 +13,7 @@ const ShowSaved = ({savedPosters}) => {
                             <p className='poster-quote'>{poster.quote}</p>
                         </div>)}
             </div>
-            <button>Back to Main</button>
+            <button onClick={handleToggleSave}>Back to Main</button>
         </div>
     )
 }
