@@ -6,8 +6,8 @@ const FormComponent = ({handleFormComponent, setCurrentPoster}) => {
     const [titleInput, setTitleInput] = useState('');
     const [quoteInput, setQuoteInput] = useState('');
 
-    const handleSubmit = () => {
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
         const poster = {
             image: imageInput,
             title: titleInput,
@@ -15,7 +15,7 @@ const FormComponent = ({handleFormComponent, setCurrentPoster}) => {
         }
         setCurrentPoster(poster);
     }
-    
+
     return (
         <div className="poster-form hidden">
             <form>
@@ -32,8 +32,6 @@ const FormComponent = ({handleFormComponent, setCurrentPoster}) => {
             <button className="show-main" onClick={handleFormComponent}>Nevermind, take me back!</button>
         </div>
     )
-     
-    
 }
 
 export default FormComponent;

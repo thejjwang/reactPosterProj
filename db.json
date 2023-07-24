@@ -11,6 +11,12 @@
       "title": "accomplishment",
       "quote": "Believe you can and you're halfway there.",
       "id": 1
+    },
+    {
+      "image": "src/assets/lion.jpg",
+      "title": "understanding",
+      "quote": "No matter what you're going through, there's a light at the end of the tunnel.",
+      "id": 2
     }
   ]
 }
