@@ -103,15 +103,17 @@ const quotes = [
     "Each person must live their life as a model for others.",
     "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+// added to randomize on load
+const initialState = {
+    image: images[Math.floor(Math.random() * images.length)],
+    quote: quotes[Math.floor(Math.random() * quotes.length)],
+    title: titles[Math.floor(Math.random() * titles.length)]}
 
 const MainComponent = () => {
     const [savedPosters, setSavedPosters] = useState([]);
-    const [currentPoster, setCurrentPoster] = useState({image: images[Math.floor(Math.random() * images.length)],
-        quote: quotes[Math.floor(Math.random() * quotes.length)],
-        title: titles[Math.floor(Math.random() * titles.length)]});
+    const [currentPoster, setCurrentPoster] = useState(initialState);
     const [showSaved, setShowSaved] = useState(false);
     const [formComponent, setFormComponent] = useState(false);
-
 
     const randomize = () => {
         const randomImg = images[Math.floor(Math.random() * images.length)];
@@ -123,28 +125,34 @@ const MainComponent = () => {
             quote: randomQuote,
             title: randomTitle
         } 
-
         setCurrentPoster(poster);
     }
     
     const savePoster = () => {
+        // added because our initial save wasnt being consolelogged
+        // as an object, was interesting how it was being passed properly
         setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);
     }
-    console.log(savedPosters);
 
     const handleToggleSave =  () => {
+        // refactored to toggle false or true
         setShowSaved(!showSaved);
     }
- 
+
+    const handleFormComponent = () => {
+        setFormComponent(!formComponent);
+    }   
+
     return (
         <div>
             <Poster currentPoster={currentPoster}/>
             <button onClick={savePoster}>Save This Poster</button>
-            {showSaved && (<ShowSaved savedPosters={savedPosters} handleToggleSave={handleToggleSave} />)} 
             <button onClick={handleToggleSave}>Show Saved Posters</button>
             <button onClick={randomize}>Show Another Random Poster</button>
-            {FormComponent && (<FormComponent /> )}
-        </div>
+            <button onClick={handleFormComponent}>Make Your Own Poster</button>
+            {showSaved && (<ShowSaved savedPosters={savedPosters} handleToggleSave={handleToggleSave} />)} 
+            {formComponent && (<FormComponent setCurrentPoster={setCurrentPoster} handleFormComponent={handleFormComponent}/> )}
+        </div> 
     )
 }
 

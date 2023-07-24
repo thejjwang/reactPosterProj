@@ -29,9 +29,6 @@ button:hover {
   background: darkslateblue;
 }
 
-.hidden {
-  display: none!important;
-}
 .posterDiv {
     background: black;
     display: flex;
