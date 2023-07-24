@@ -108,12 +108,27 @@ const initialState = {
     image: images[Math.floor(Math.random() * images.length)],
     quote: quotes[Math.floor(Math.random() * quotes.length)],
     title: titles[Math.floor(Math.random() * titles.length)]}
-
+    
 const MainComponent = () => {
     const [savedPosters, setSavedPosters] = useState([]);
     const [currentPoster, setCurrentPoster] = useState(initialState);
     const [showSaved, setShowSaved] = useState(false);
     const [formComponent, setFormComponent] = useState(false);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('http://localhost:3000/posters', {
+                    method: 'GET',
+                });
+                const data = await response.json();
+                setSavedPosters(data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
 
     const randomize = () => {
         const randomImg = images[Math.floor(Math.random() * images.length)];
@@ -128,7 +143,21 @@ const MainComponent = () => {
         setCurrentPoster(poster);
     }
     
-    const savePoster = () => {
+    const savePoster = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/posters', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ image: currentPoster.image, title: currentPoster.title, quote: currentPoster.quote})
+                });
+                const data = await response.json();
+                console.log(data);
+
+            } catch (error) {
+                console.log(error);
+        }
         // added because our initial save wasnt being consolelogged
         // as an object, was interesting how it was being passed properly
         setSavedPosters((prevSavedPosters) => [...prevSavedPosters, currentPoster]);

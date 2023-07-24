@@ -15,7 +15,7 @@ const FormComponent = ({handleFormComponent, setCurrentPoster}) => {
         }
         setCurrentPoster(poster);
     }
-
+    
     return (
         <div className="poster-form hidden">
             <form>

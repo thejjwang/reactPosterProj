@@ -1,0 +1,16 @@
+{
+  "posters": [
+    {
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbs2G-OUnPItRAsYXTmuvAYX_IjxDScyjDCafBRGMw&s",
+      "title": "Puppy Cafe",
+      "quote": "A place to drink coffee with pups",
+      "id": 0
+    },
+    {
+      "image": "src/assets/squirrel.jpg",
+      "title": "accomplishment",
+      "quote": "Believe you can and you're halfway there.",
+      "id": 1
+    }
+  ]
+}
